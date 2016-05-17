@@ -21,6 +21,9 @@ class DeckOfCards
       {seven_of_diamonds: 7}, {eight_of_diamonds: 8}, {nine_of_diamonds: 9},
       {ten_of_diamonds: 10}, {jack_of_diamonds: 10}, {queen_of_diamonds: 10},
       {king_of_diamonds: 10}
-    ]
+    ].shuffle
   end
 end
+
+deck = DeckOfCards.new
+@deck = deck.cards

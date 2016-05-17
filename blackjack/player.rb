@@ -1,51 +1,43 @@
-class DeckOfCards
-  attr_accessor :cards
-
-  def initialize
-    @cards = [
-      {ace_of_spades: 1}, {two_of_spades: 2}, {three_of_spades: 3},
-      {four_of_spades: 4}, {five_of_spades: 5}, {six_of_spades: 6},
-      {seven_of_spades: 7}, {eight_of_spades: 8}, {nine_of_spades: 9}, 
-      {ten_of_spades: 10}, {jack_of_spades: 10}, {queen_of_spades: 10},
-      {king_of_spades: 10}, {ace_of_hearts: 1}, {two_of_hearts: 2},
-      {three_of_hearts: 3}, {four_of_hearts: 4}, {five_of_hearts: 5},
-      {six_of_hearts: 6}, {seven_of_hearts: 7}, {eight_of_hearts: 8},
-      {nine_of_hearts: 9}, {ten_of_hearts: 10}, {jack_of_hearts: 10},
-      {queen_of_hearts: 10}, {king_of_hearts: 10}, {ace_of_clubs: 1},
-      {two_of_clubs: 2}, {three_of_clubs: 3}, {four_of_clubs: 4},
-      {five_of_clubs: 5}, {six_of_clubs: 6}, {seven_of_clubs: 7},
-      {eight_of_clubs: 8}, {nine_of_clubs: 9}, {ten_of_clubs: 10},
-      {jack_of_clubs: 10}, {queen_of_clubs: 10}, {king_of_clubs: 10},
-      {ace_of_diamonds: 1}, {two_of_diamonds: 2}, {three_of_diamonds: 3},
-      {four_of_diamonds: 4}, {five_of_diamonds: 5}, {six_of_diamonds: 6},
-      {seven_of_diamonds: 7}, {eight_of_diamonds: 8}, {nine_of_diamonds: 9},
-      {ten_of_diamonds: 10}, {jack_of_diamonds: 10}, {queen_of_diamonds: 10},
-      {king_of_diamonds: 10}
-    ]
-  end
-end
+require "./deck.rb"
 
 class Player
 	attr_reader :name
-	attr_accessor :hand, :points, :money
+	attr_accessor :hand, :points, :money, :playing, :bet
 	def initialize
-		@name = ask("What is your name? ")
+		@name = ask_s("What is your name? ")
 		@hand = Array.new
 		@points = 0
 		@money = 2500
+    @playing = true
 	end
-	def ask(question)
+	def ask_s(question)
 		print question
 		answer = gets.chomp
 		return answer
 	end
+  def ask_i(question)
+    print question
+    answer = gets.chomp.to_i
+    return answer
+  end
+  def hit(deck)
+    card = deck.pop
+    @hand.push(card)
+    @points += card.values[0]
+  end 
+  def stop
+    playing = false
+  end
+  def bet
+    @bet = ask_i("How much do you want to bet? ")
+    @money = @money - @bet
+  end
 end
 
-jorge = Player.new
-puts jorge.name
-puts jorge.hand.inspect
-puts jorge.points
-puts jorge.money
-
-deck = DeckOfCards.new
-puts deck.cards.length
+# player = Player.new
+# player.hit(@deck)
+# player.hit(@deck)
+# puts player.hand
+# player.bet
+# puts player.money
+# puts player.points
