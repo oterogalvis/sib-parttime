@@ -25,5 +25,5 @@ class DeckOfCards
   end
 end
 
-deck = DeckOfCards.new
-@deck = deck.cards
+# deck = DeckOfCards.new
+# @deck = deck.cards
