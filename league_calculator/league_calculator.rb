@@ -5,7 +5,6 @@ class League
 	def initialize
 		@games = Array.new
 		@teams = Array.new
-		main
 	end
 	def main
 		answer = "Y"
@@ -69,6 +68,15 @@ class League
 		end
 		return found
 	end
+	def sort_teams
+		puts @teams.inspect
+		@teams.sort! {|a , b| a.name <=> b.name}
+		puts @teams.inspect
+		@teams.sort! {|a , b| a.score <=> b.score}
+		puts teams.inspect
+		# reverse
+	end
 end
 
 league = League.new
+league.main
